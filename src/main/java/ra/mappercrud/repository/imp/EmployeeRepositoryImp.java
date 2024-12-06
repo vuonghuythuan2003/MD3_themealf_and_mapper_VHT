@@ -53,7 +53,7 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
     @Override
     public boolean delete(String id) {
         try {
-            Employee employee = entityManager.find(Employee.class, id);
+            Employee employee = findById(id);
             if (employee != null) {
                 entityManager.remove(employee);
                 return true;

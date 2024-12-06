@@ -28,6 +28,6 @@ public class Department {
     @Column(name = "dept_status", nullable = false)
     private Boolean status;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Employee> employees;
+//    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+//    private List<Employee> employees;
 }

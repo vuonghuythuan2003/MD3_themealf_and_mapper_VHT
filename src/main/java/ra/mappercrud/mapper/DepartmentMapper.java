@@ -27,7 +27,6 @@ public class DepartmentMapper implements GenericMapper<DepartmentCreateRequest, 
 
     public DepartmentResponse mapperEntityToResponse(Department department) {
         if (department == null) return null;
-        return new DepartmentResponse(department.getId(), department.getName(),
-                department.getDeptNo(), department.getStatus(), department.getEmployees().size());
+        return new DepartmentResponse(department);
     }
 }

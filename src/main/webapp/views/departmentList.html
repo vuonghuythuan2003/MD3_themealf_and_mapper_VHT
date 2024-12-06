@@ -19,7 +19,6 @@
         <th>Department Name</th>
         <th>Department Number</th>
         <th>Status</th>
-        <th>Employee Count</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -29,7 +28,6 @@
         <td th:text="${dept.name}"></td>
         <td th:text="${dept.deptNo}"></td>
         <td th:text="${dept.status ? 'Active' : 'Inactive'}"></td>
-        <td th:text="${dept.employeeCount}"></td>
         <td>
             <a th:href="@{/departmentController/initUpdate(departmentId=${dept.id})}">Edit</a> |
             <form th:action="@{/departmentController/delete(departmentId=${dept.id})}" method="post" style="display: inline;">

@@ -36,9 +36,10 @@ public class Employee {
     @Column(name = "emp_address", nullable = false)
     private String address;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "dept_id", nullable = false)
     private Department department;
+
     @Column(name = "emp_status", nullable = false)
     private Integer status;
 

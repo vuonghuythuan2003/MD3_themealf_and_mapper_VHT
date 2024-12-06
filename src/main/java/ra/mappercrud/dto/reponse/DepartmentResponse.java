@@ -14,13 +14,13 @@ public class DepartmentResponse {
     private String name;
     private String deptNo;
     private Boolean status;
-    private int employeeCount;
+//    private int employeeCount;
 
     public DepartmentResponse(Department department) {
         this.id = department.getId();
         this.name = department.getName();
         this.deptNo = department.getDeptNo();
         this.status = department.getStatus();
-        this.employeeCount = department.getEmployees().size();
+//        this.employeeCount = department.getEmployees().size();
     }
 }
