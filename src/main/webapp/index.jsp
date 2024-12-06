@@ -8,6 +8,8 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="departmentController/findAll">Quản lý phòng ban</a>
+<a href="employeeController/findAll">Quản lý nhân viên</a>
+
 </body>
 </html>

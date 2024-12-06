@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Update Department</title>
+</head>
+<body>
+<h1>Update Department</h1>
+
+<form th:action="@{/departmentController/update(departmentId=${departmentResponse.id})}" method="post">
+    <div>
+        <label for="name">Department Name:</label><br>
+        <input type="text" id="name" name="name" th:value="${departmentResponse.name}" required>
+    </div>
+    <br>
+
+    <div>
+        <label for="deptNo">Department Number:</label><br>
+        <input type="text" id="deptNo" name="deptNo" th:value="${departmentResponse.deptNo}" maxlength="4" required>
+    </div>
+    <br>
+
+    <div>
+        <label for="status">Status:</label><br>
+        <select id="status" name="status">
+            <option value="true" th:selected="${departmentResponse.status}">Active</option>
+            <option value="false" th:selected="${!departmentResponse.status}">Inactive</option>
+        </select>
+    </div>
+    <br>
+
+    <!-- Buttons -->
+    <div>
+        <button type="submit">Update</button>
+        <a th:href="@{/departmentController/findAll}">Cancel</a>
+    </div>
+</form>
+</body>
+</html>

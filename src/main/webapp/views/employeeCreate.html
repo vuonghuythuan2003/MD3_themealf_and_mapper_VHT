@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thêm mới nhân viên</title>
+</head>
+<body>
+<h1>Thêm mới nhân viên</h1>
+
+<div th:if="${errorMessage}" style="color: red; font-weight: bold;" th:text="${errorMessage}"></div>
+
+<form th:action="@{/employeeController/create}" method="post">
+    <label for="id">Mã nhân viên:</label><br>
+    <input type="text" id="id" name="id" th:value="${employeeCreateRequest.id}" required maxlength="5"><br><br>
+
+    <label for="name">Tên nhân viên:</label><br>
+    <input type="text" id="name" name="name" th:value="${employeeCreateRequest.name}" required maxlength="50"><br><br>
+
+    <label for="age">Tuổi:</label><br>
+    <input type="number" id="age" name="age" th:value="${employeeCreateRequest.age}" required min="18" max="65"><br><br>
+
+    <label for="gender">Giới tính:</label><br>
+    <select id="gender" name="gender" required>
+        <option th:selected="${employeeCreateRequest.gender == true}" th:value="true">Nam</option>
+        <option th:selected="${employeeCreateRequest.gender == false}" th:value="false">Nữ</option>
+    </select><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" th:value="${employeeCreateRequest.email}" required maxlength="50"><br><br>
+
+    <label for="phone">Số điện thoại:</label><br>
+    <input type="text" id="phone" name="phone" th:value="${employeeCreateRequest.phone}" required maxlength="10"><br><br>
+
+    <label for="address">Địa chỉ:</label><br>
+    <input type="text" id="address" name="address" th:value="${employeeCreateRequest.address}" required><br><br>
+
+    <label for="departmentId">Phòng ban:</label><br>
+    <select id="departmentId" name="departmentId" required>
+        <option value="" disabled selected>-- Chọn phòng ban --</option>
+        <th:block th:each="dept : ${listDepartments}">
+            <option th:value="${dept.id}" th:text="${dept.name}"
+                    th:selected="${employeeCreateRequest.departmentId == dept.id}"></option>
+        </th:block>
+    </select><br><br>
+
+    <label for="status">Trạng thái:</label><br>
+    <select id="status" name="status" required>
+        <option th:selected="${employeeCreateRequest.status == 1}" th:value="1">Hoạt động</option>
+        <option th:selected="${employeeCreateRequest.status == 0}" th:value="0">Không hoạt động</option>
+    </select><br><br>
+
+    <label for="avatarUrl">URL ảnh đại diện:</label><br>
+    <input type="text" id="avatarUrl" name="avatarUrl" th:value="${employeeCreateRequest.avatarUrl}"><br><br>
+
+    <button type="submit">Thêm nhân viên</button>
+</form>
+
+<a th:href="@{/employeeController/findAll}">Quay lại danh sách nhân viên</a>
+
+</body>
+</html>

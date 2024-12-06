@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quản lý nhân viên</title>
+</head>
+<body>
+<h1>Quản lý nhân viên</h1>
+
+<div th:if="${successMessage}" style="color: green; font-weight: bold;" th:text="${successMessage}"></div>
+<div th:if="${errorMessage}" style="color: red; font-weight: bold;" th:text="${errorMessage}"></div>
+
+<a th:href="@{/employeeController/initCreate}" style="font-weight: bold;">Thêm nhân viên mới</a>
+<br><br>
+
+<table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên nhân viên</th>
+        <th>Tuổi</th>
+        <th>Giới tính</th>
+        <th>Email</th>
+        <th>Số điện thoại</th>
+        <th>Địa chỉ</th>
+        <th>Phòng ban</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${listEmployee}">
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.age}"></td>
+        <td th:text="${employee.geader ? 'Nam' : 'Nữ'}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.phone}"></td>
+        <td th:text="${employee.address}"></td>
+        <td th:text="${employee.departmentName}"></td>
+        <td th:text="${employee.status == 1 ? 'Hoạt động' : 'Không hoạt động'}"></td>
+        <td>
+            <a th:href="@{/employeeController/initUpdate(employeeId=${employee.id})}">Edit</a> |
+            <a th:href="@{/employeeController/delete(employeeId=${employee.id})}"
+               style="color: red;"
+               onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">Delete</a>
+        </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(listEmployee)}">
+        <td colspan="10" style="text-align: center;">Không có nhân viên nào</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
