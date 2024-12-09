@@ -46,8 +46,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
     // https://mvnrepository.com/artifact/com.cloudinary/cloudinary-http44
-    implementation 'com.cloudinary:cloudinary-http44:1.32.2'
-
+    implementation group: 'com.cloudinary', name: 'cloudinary-http44', version: '1.33.0'
     // https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")

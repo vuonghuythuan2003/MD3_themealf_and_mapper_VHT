@@ -10,7 +10,6 @@
 <body>
 <h1>Cập nhật thông tin nhân viên</h1>
 
-<!-- Thông báo lỗi -->
 <div th:if="${errorMessage}" style="color: red; font-weight: bold;" th:text="${errorMessage}"></div>
 <div th:if="${successMessage}" style="color: green; font-weight: bold;" th:text="${successMessage}"></div>
 
@@ -53,7 +52,7 @@
     </select><br><br>
 
     <label for="avatarUrl">URL ảnh đại diện:</label><br>
-    <input type="text" id="avatarUrl" name="avatarUrl" th:value="${employeeReponse.avatarUrl}"><br><br>
+    <input type="file" id="avatarUrl" name="avatarUrl" th:value="${employeeReponse.avatarUrl}"><br><br>
 
     <button type="submit">Cập nhật</button>
 </form>

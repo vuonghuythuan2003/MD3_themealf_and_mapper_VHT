@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quản lý nhân viên</title>
 </head>
@@ -28,6 +27,7 @@
         <th>Địa chỉ</th>
         <th>Phòng ban</th>
         <th>Trạng thái</th>
+        <th>Hình ảnh</th>
         <th>Hành động</th>
     </tr>
     </thead>
@@ -42,6 +42,7 @@
         <td th:text="${employee.address}"></td>
         <td th:text="${employee.departmentName}"></td>
         <td th:text="${employee.status == 1 ? 'Hoạt động' : 'Không hoạt động'}"></td>
+        <td><img th:src="${employee.avatarUrl}" alt="${employee.name}" width="100" height="100"/></td>
         <td>
             <a th:href="@{/employeeController/initUpdate(employeeId=${employee.id})}">Edit</a> |
             <a th:href="@{/employeeController/delete(employeeId=${employee.id})}"
@@ -54,6 +55,5 @@
     </tr>
     </tbody>
 </table>
-
 </body>
 </html>

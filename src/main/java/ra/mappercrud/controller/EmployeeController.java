@@ -1,9 +1,10 @@
 package ra.mappercrud.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ra.mappercrud.dto.reponse.DepartmentResponse;
 import ra.mappercrud.dto.reponse.EmployeeReponse;
 import ra.mappercrud.dto.request.EmployeeCreateRequest;
@@ -11,15 +12,13 @@ import ra.mappercrud.service.DepartmentService;
 import ra.mappercrud.service.EmployeeService;
 
 import java.util.List;
-
 @Controller
 @RequestMapping("/employeeController")
+@RequiredArgsConstructor
 public class EmployeeController {
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
+    private final DepartmentService departmentService;
 
-    @Autowired
-    private DepartmentService departmentService;
 
     @GetMapping("/findAll")
     public String findAll(Model model) {
@@ -38,9 +37,10 @@ public class EmployeeController {
     }
 
     @PostMapping("/create")
-    public String create(EmployeeCreateRequest employeeCreateRequest, Model model) {
+    public String create(@ModelAttribute EmployeeCreateRequest employeeCreateRequest,
+                         @RequestParam("avatarUrl") MultipartFile avatarFile, Model model) {
         try {
-            employeeService.save(employeeCreateRequest);
+            employeeService.save(employeeCreateRequest, avatarFile);
             return "redirect:/employeeController/findAll";
         } catch (Exception e) {
             model.addAttribute("errorMessage", "Thêm thất bại: " + e.getMessage());
@@ -63,9 +63,13 @@ public class EmployeeController {
     }
 
     @PostMapping("/update")
-    public String update(@RequestParam("employeeId") String employeeId, EmployeeCreateRequest create, Model model) {
+    public String update(@RequestParam("employeeId") String employeeId,
+                         @ModelAttribute EmployeeCreateRequest create,
+                         @RequestParam("avatarUrl") MultipartFile avatarFile, Model model) {
         try {
-            employeeService.update(employeeId, create);
+
+
+            employeeService.update(employeeId, create, avatarFile);
             return "redirect:/employeeController/findAll";
         } catch (Exception e) {
             model.addAttribute("errorMessage", "Cập nhật thất bại: " + e.getMessage());
@@ -75,16 +79,12 @@ public class EmployeeController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam("employeeId") String employeeId, Model model) {
-        System.out.println("ID nhân viên cần xóa: " + employeeId);
         try {
             employeeService.deleteById(employeeId);
-            model.addAttribute("successMessage", "Xóa thành công");
             return "redirect:/employeeController/findAll";
         } catch (Exception e) {
             model.addAttribute("errorMessage", "Xóa thất bại: " + e.getMessage());
             return "error";
         }
     }
-
-
 }

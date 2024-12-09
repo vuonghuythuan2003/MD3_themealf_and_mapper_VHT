@@ -47,6 +47,4 @@ public class EmployeeCreateRequest {
     @NotNull(message = "Trạng thái nhân viên không được để trống")
     private Integer status;
 
-
-    private String avatarUrl;
 }

@@ -35,7 +35,6 @@ public class EmployeeMapper implements GenericMapper<EmployeeCreateRequest, Empl
                 ).build().getDepartment()
                         : null)
                 .status(request.getStatus())
-                .avatarUrl(request.getAvatarUrl())
                 .build();
     }
 

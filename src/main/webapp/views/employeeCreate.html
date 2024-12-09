@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Thêm mới nhân viên</title>
 </head>
@@ -12,7 +11,7 @@
 
 <div th:if="${errorMessage}" style="color: red; font-weight: bold;" th:text="${errorMessage}"></div>
 
-<form th:action="@{/employeeController/create}" method="post">
+<form th:action="@{/employeeController/create}" method="post" enctype="multipart/form-data">
     <label for="id">Mã nhân viên:</label><br>
     <input type="text" id="id" name="id" th:value="${employeeCreateRequest.id}" required maxlength="5"><br><br>
 
@@ -41,8 +40,7 @@
     <select id="departmentId" name="departmentId" required>
         <option value="" disabled selected>-- Chọn phòng ban --</option>
         <th:block th:each="dept : ${listDepartments}">
-            <option th:value="${dept.id}" th:text="${dept.name}"
-                    th:selected="${employeeCreateRequest.departmentId == dept.id}"></option>
+            <option th:value="${dept.id}" th:text="${dept.name}"></option>
         </th:block>
     </select><br><br>
 
@@ -52,13 +50,12 @@
         <option th:selected="${employeeCreateRequest.status == 0}" th:value="0">Không hoạt động</option>
     </select><br><br>
 
-    <label for="avatarUrl">URL ảnh đại diện:</label><br>
-    <input type="text" id="avatarUrl" name="avatarUrl" th:value="${employeeCreateRequest.avatarUrl}"><br><br>
+    <label for="avatarUrl">Ảnh đại diện:</label><br>
+    <input type="file" id="avatarUrl" name="avatarUrl" accept="image/*"><br><br>
 
     <button type="submit">Thêm nhân viên</button>
 </form>
 
 <a th:href="@{/employeeController/findAll}">Quay lại danh sách nhân viên</a>
-
 </body>
 </html>

@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+
 public class DepartmentUpdateRequest {
     @NotBlank(message = "Tên không được để trống")
     @Size(max = 100, message = "Tên không được vượt quá 100 ký tự")
